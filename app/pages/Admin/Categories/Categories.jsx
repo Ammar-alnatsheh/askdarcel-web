@@ -31,7 +31,8 @@ class Categories extends React.Component {
   }
 
   addCategory(val) {
-    fake_data.post(val);
+    console.log('adding a new category ' + val);
+    //fake_data.post(val);
   }
 
   addSubcategories(categoryId, newCategories = []) {
@@ -51,7 +52,7 @@ class Categories extends React.Component {
     return (
       <div>
         <div>initialize the Categories page</div>
-        <CategoriesList categories={categories} />
+        <CategoriesList categories={categories} addCategory={this.addCategory}/>
       </div>
     );
   }
