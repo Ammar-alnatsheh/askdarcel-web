@@ -1,7 +1,9 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { Accordion, Card } from 'react-bootstrap';
+import { PortalWithState } from 'react-portal';
 import CategoriesItem from './CategoriesItem';
+import AddCategory from './AddCategory';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Style from '../../Admin.module.scss';
 
@@ -38,7 +40,18 @@ class CategoriesList extends React.Component {
             <span className={Style.CategoriesListHeader}>
                 Top Level Categories
             </span>
-            <span className={Style.AddCategory}>+ Add Category</span>
+            <PortalWithState closeOnOutsideClick closeOnEsc>
+              {({ openPortal, closePortal, isOpen, portal }) => (
+                <React.Fragment>
+                  <span className={Style.AddCategory} onClick={openPortal}>+ Add Category</span>
+                  {portal(
+                    <div className={Style.portal}>
+                    <AddCategory addCategory={this.props.addCategory}/>
+                    </div>
+                  )}
+                </React.Fragment>
+              )}
+            </PortalWithState>
           </Card.Header>
         </Card>
         {this.props.categories.map(category => (
