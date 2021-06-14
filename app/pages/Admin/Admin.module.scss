@@ -42,3 +42,18 @@
   background-color: white;
 }
 
+.portal {
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #CCC;
+  background-color: #f7f7f7
+}
+
+.AddCategoryForm {
+  margin: 10px;
+
+}
+
