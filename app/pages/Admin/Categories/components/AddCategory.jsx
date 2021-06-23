@@ -7,10 +7,10 @@ class AddCategory extends React.Component {
     this.state = {
         categoryName : "",
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.addCategory = this.addCategory.bind(this);
   }
 
-  handleChange(event) {
+  addCategory(event) {
     event.preventDefault();
     let name = event.target.name.value || '';
     this.props.addCategory(name);
@@ -18,9 +18,8 @@ class AddCategory extends React.Component {
 
   render() {
     return (
-    <form className={Style.AddCategoryForm} onSubmit={this.handleChange}>
-        <label></label>
-        <label>Name</label>
+    <form className={Style.AddCategoryForm} onSubmit={this.addCategory}>
+        <label>This is the Add Category dummy Portal</label>
         <input type="text" name="name"></input>
         <br></br>
         <button type="submit">Add Category</button>
