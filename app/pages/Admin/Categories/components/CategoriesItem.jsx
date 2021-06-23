@@ -1,6 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { Accordion, Card } from 'react-bootstrap';
+import { PortalWithState } from 'react-portal';
+import EditCategory from './EditCategory';
 import SubcategoriesList from './SubcategoriesList';
 import Style from '../../Admin.module.scss';
 import down_arrow from '../../assets/down_arrow.png';
@@ -25,8 +27,21 @@ const CategoriesItem = props => {
           <img className={Style.CategoriesListArrow} src={arrowImage} alt="" />
           <div className={Style.CategoryName}>{props.category.name}</div>
           <div className={Style.CategorySpacer} />
-          {
-            isSelected ? <div className={Style.EditCategory}>Edit Category</div> : null
+          {isSelected ? <PortalWithState closeOnEsc>
+              {({ openPortal, closePortal, isOpen, portal }) => (
+                <React.Fragment>
+                  <div className={Style.EditCategory} onClick={e => {
+                    openPortal();
+                    e.stopPropagation();
+                    }} >Edit Category</div>
+                  {portal(
+                    <div className={Style.portal}>
+                    <EditCategory />
+                    </div>
+                  )}
+                </React.Fragment>
+              )}
+            </PortalWithState> : null
           }
         </div>
       </Accordion.Toggle>

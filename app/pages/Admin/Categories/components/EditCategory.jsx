@@ -10,7 +10,7 @@ class EditCategory extends React.Component {
     this.editCategory = this.editCategory.bind(this);
   }
 
-  Category(event) {
+  editCategory(event) {
     event.preventDefault();
     console.log(event);
   }
